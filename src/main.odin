@@ -25,7 +25,15 @@ main :: proc() {
 
 	raylib.SetTargetFPS(60)
 
+	rotationAngle: f32 = 0.0
+
 	for !raylib.WindowShouldClose() {
+		rotationAngle += raylib.GetFrameTime() * 0.5
+
+		rotationMatrix := raylib.MatrixRotateY(rotationAngle)
+
+		model.transform = rotationMatrix
+
 		raylib.BeginDrawing()
 
 		raylib.ClearBackground(raylib.BLACK)
